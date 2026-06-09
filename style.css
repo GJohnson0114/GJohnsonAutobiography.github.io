@@ -360,20 +360,7 @@ header h1 {
   transform: translateY(-50%);
 }
 
-.lightbox-caption {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #ffffff;
-  font-size: 1rem;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 8px 16px;
-  border-radius: 4px;
-  max-width: 80%;
-  pointer-events: none;
-}
+
 
 /* ==========================================
    8. FOOTER & MEDIA RESPONSIVENESS RULES
