@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorites - Autobiography</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Dark Mode Toggle Button placed at the top -->
+        <button class="theme-toggle-btn" id="theme-toggle">Dark Mode</button>
+        <nav class="nav-back">
+            <a href="index.html">← Back to Index</a>
+        </nav>
+
+        <header>
+            <h1>Favorite Media</h1>
+        </header>
+
+        <main>
+            <section class="category-section">
+                <h2 class="category-title">Movies</h2>
+                <ul class="favorites-list">
+                    <li class="favorite-item">
+                        <p class="favorite-title">Movie Title One</p>
+                        <p class="favorite-meta">Directed by Director Name (Year)</p>
+                    </li>
+                    <li class="favorite-item">
+                        <p class="favorite-title">Movie Title Two</p>
+                        <p class="favorite-meta">Directed by Director Name (Year)</p>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="category-section">
+                <h2 class="category-title">Television Shows</h2>
+                <ul class="favorites-list">
+                    <li class="favorite-item">
+                        <p class="favorite-title">Show Name One</p>
+                        <p class="favorite-meta">Created by Creator Name (Years Active)</p>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="category-section">
+                <h2 class="category-title">Superheroes & Pop Culture</h2>
+                <ul class="favorites-list">
+                    <li class="favorite-item">
+                        <p class="favorite-title">Character Name</p>
+                        <p class="favorite-meta">Favorite run, creator, or version of the character.</p>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <p>Last updated: June 2026</p>
+        </footer>
+
+    </div>
+<script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        
+        // Check if the user has a saved preference, otherwise default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        toggleBtn.textContent = currentTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
+
+        toggleBtn.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                toggleBtn.textContent = 'Dark Mode';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                toggleBtn.textContent = 'Light Mode';
+            }
+        });
+    </script>
+</body>
+</html>

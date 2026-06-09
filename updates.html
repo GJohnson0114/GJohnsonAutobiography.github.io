@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updates - Autobiography</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+<!-- Dark Mode Toggle Button placed at the top -->
+        <button class="theme-toggle-btn" id="theme-toggle">Dark Mode</button>
+        <nav class="nav-back">
+            <a href="index.html">← Back to Index</a>
+        </nav>
+
+        <header>
+            <h1>Site Updates & Log</h1>
+        </header>
+
+        <main>
+            <!-- Reusing timeline styling for structured log entries -->
+            <section class="timeline-year">
+                <h2>Recent Activity</h2>
+                
+                <div class="timeline-month">
+                    <h3>June 2026</h3>
+                    <p>Launched the site structure. Finished adding initial code skeletons for the index page, chronological biography, and media favorites lists.</p>
+                </div>
+
+                <div class="timeline-month">
+                    <h3>May 2026</h3>
+                    <p>Began designing the layout concepts for this autobiography project. Decided to keep the stylesheet centralized to easily manage sitewide color changes later.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Last updated: June 2026</p>
+        </footer>
+
+    </div>
+<script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        
+        // Check if the user has a saved preference, otherwise default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        toggleBtn.textContent = currentTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
+
+        toggleBtn.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                toggleBtn.textContent = 'Dark Mode';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                toggleBtn.textContent = 'Light Mode';
+            }
+        });
+    </script>
+</body>
+</html>

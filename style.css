@@ -1,0 +1,415 @@
+/* ==========================================
+   1. COLOR THEME VARIABLES (Light & Dark)
+   ========================================== */
+/* Light theme defaults */
+:root {
+  --bg-color: #fdfdfd;
+  --text-color: #222222;
+  --accent-color: #555555;
+  --border-color: #e0e0e0;
+}
+
+/* Dark theme overrides */
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --accent-color: #a0a0a0;
+  --border-color: #333333;
+}
+
+/* Smooth Scrolling for the whole page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ==========================================
+   2. GENERAL BODY & LAYOUT BASE STYLES
+   ========================================== */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0px 20px 40px 20px; /* Adjusted top padding to accommodate sticky nav */
+}
+
+.container {
+  max-width: 650px;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+
+/* ==========================================
+   3. NAVIGATION & CORE UI
+   ========================================== */
+/* Sticky Year Navigation Menu */
+.year-nav {
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 12px 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  z-index: 1000;
+}
+
+.year-nav a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.year-nav a:hover {
+  background-color: var(--border-color);
+}
+
+/* Back to Top Floating Action Button */
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  text-decoration: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 1000;
+  opacity: 0; /* Hidden initially */
+  pointer-events: none; /* Prevents interactions when hidden */
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  transform: translateY(-3px);
+}
+
+.nav-back {
+  font-size: 0.9rem;
+  margin-bottom: 30px;
+}
+
+.nav-back a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.nav-back a:hover {
+  text-decoration: underline;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  letter-spacing: -0.5px;
+}
+
+/* Dark mode toggle switch button elements */
+.theme-toggle-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  float: right;
+}
+
+.theme-toggle-btn:hover {
+  background-color: var(--border-color);
+}
+
+/* ==========================================
+   4. HOMEPAGE SPECIFIC LAYOUTS
+   ========================================== */
+.intro-text p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 40px 0;
+}
+
+.index-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-color);
+  margin-bottom: 20px;
+}
+
+.index-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.index-item {
+  margin-bottom: 25px;
+}
+
+.index-item a {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.index-item a:hover {
+  text-decoration: underline;
+}
+
+.index-item p {
+  margin: 5px 0 0 0;
+  font-size: 0.95rem;
+  color: var(--accent-color);
+}
+
+/* ==========================================
+   5. TIMELINE & COLLAGE LAYOUTS
+   ========================================== */
+.timeline-year {
+  margin-top: 50px;
+  border-top: 2px solid var(--text-color);
+  padding-top: 20px;
+  scroll-margin-top: 70px; /* Prevents header from covering titles when jumping anchors */
+}
+
+.timeline-year h2 {
+  font-size: 1.6rem;
+  margin: 0 0 30px 0;
+  font-weight: 600;
+}
+
+.timeline-month {
+  margin-bottom: 35px;
+  padding-left: 20px;
+  border-left: 1px solid var(--border-color);
+}
+
+.timeline-month h3 {
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent-color);
+  margin: 0 0 10px 0;
+}
+
+.timeline-month p {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+/* Photo Collage Structure */
+.photo-collage {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.collage-item {
+  position: relative;
+  background-color: var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+.collage-item.large {
+  grid-column: span 2;
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+
+.collage-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.collage-item img:hover {
+  opacity: 0.9;
+}
+
+/* ==========================================
+   6. FAVORITES PAGE SPECIFIC LAYOUTS
+   ========================================== */
+.category-section {
+  margin-bottom: 50px;
+}
+
+.category-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-color);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.favorites-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.favorite-item {
+  margin-bottom: 20px;
+}
+
+.favorite-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.favorite-meta {
+  font-size: 0.9rem;
+  color: var(--accent-color);
+  margin: 2px 0 0 0;
+}
+
+/* ==========================================
+   7. POP-UP LIGHTBOX VIEWER CONTROL STYLES
+   ========================================== */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.lightbox-img {
+  max-width: 85%;
+  max-height: 85%;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.lightbox-btn {
+  position: absolute;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 2.5rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  padding: 10px;
+}
+
+.lightbox-btn:hover {
+  opacity: 1;
+}
+
+.lightbox-close {
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.lightbox-prev {
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-next {
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffffff;
+  font-size: 1rem;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 8px 16px;
+  border-radius: 4px;
+  max-width: 80%;
+  pointer-events: none;
+}
+
+/* ==========================================
+   8. FOOTER & MEDIA RESPONSIVENESS RULES
+   ========================================== */
+footer {
+  margin-top: 80px;
+  font-size: 0.85rem;
+  color: var(--accent-color);
+}
+
+@media (max-width: 600px) {
+  .lightbox-btn {
+    font-size: 2rem;
+  }
+  .lightbox-prev {
+    left: 5px;
+  }
+  .lightbox-next {
+    right: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .photo-collage {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .collage-item.large {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+  .year-nav {
+    gap: 4px;
+    padding: 8px 4px;
+  }
+  .year-nav a {
+    font-size: 0.8rem;
+    padding: 3px 6px;
+  }
+}
