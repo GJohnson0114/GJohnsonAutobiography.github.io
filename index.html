@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Autobiography</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+       <!-- Dark Mode Toggle Button placed at the top -->
+        <button class="theme-toggle-btn" id="theme-toggle">Dark Mode</button> 
+        <header>
+            <h1>Welcome to my website.</h1>
+        </header>
+
+        <main>
+            <section class="intro-text">
+                <p>I built this site to act as a living autobiography. I’m 23 right now, and my goal is to keep updating and expanding this project as I get older and my life changes. It's a permanent place for me to look back on where I've been and where I'm headed.</p>
+                <p>Inside, you will find a mix of my personal history alongside the things that occupy my time and shape how I see the world. That includes dedicated spaces for my favorite movies, TV shows, superheroes, and other media. Thank you for stopping by, and please feel free to look around.</p>
+            </section>
+
+            <div class="divider"></div>
+
+            <section>
+                <h2 class="index-title">Index</h2>
+                <ul class="index-links">
+                    <li class="index-item">
+                        <a href="story.html">My Story</a>
+                        <p>A chronological look at my life and major milestones.</p>
+                    </li>
+                    <li class="index-item">
+                        <a href="favorites.html">Favorites</a>
+                        <p>A curated collection of the movies, TV shows, and superheroes I love.</p>
+                    </li>
+                    <li class="index-item">
+                        <a href="updates.html">Updates</a>
+                        <p>A space for new thoughts and life changes as time goes on.</p>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <p>Project ongoing. Last updated: June 2026</p>
+        </footer>
+
+    </div>
+<script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        
+        // Check if the user has a saved preference, otherwise default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        toggleBtn.textContent = currentTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
+
+        toggleBtn.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                toggleBtn.textContent = 'Dark Mode';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                toggleBtn.textContent = 'Light Mode';
+            }
+        });
+    </script>
+</body>
+</html>
