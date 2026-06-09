@@ -249,109 +249,110 @@
         </footer>
     </div>
 
-    <!-- Pop-up Lightbox Viewer Structure -->
-    <div id="lightbox" class="lightbox-overlay">
-        <button class="lightbox-btn lightbox-close" id="close-btn">&times;</button>
-        <button class="lightbox-btn lightbox-prev" id="prev-btn">❮</button>
-        <img id="lightbox-img" class="lightbox-img" src="" alt="Enlarged view">
-        <div id="lightbox-caption" class="lightbox-caption"></div>
-        <button class="lightbox-btn lightbox-next" id="next-btn">❯</button>
-    </div>
+    <!-- Pop-up Lightbox Viewer Structure --> 
+<div id="lightbox" class="lightbox-overlay"> 
+  <button class="lightbox-btn lightbox-close" id="close-btn">&times;</button> 
+  <button class="lightbox-btn lightbox-prev" id="prev-btn">❮</button> 
+  <img id="lightbox-img" class="lightbox-img" src="" alt="Enlarged view"> 
+  <!-- Caption element removed from here to cleanly hide the black background bar -->
+  <button class="lightbox-btn lightbox-next" id="next-btn">❯</button> 
+</div> 
 
-    <!-- Navigation, Closing, and Dark Mode Script Logic -->
-    <script>
-        // --- Dark Mode Logic ---
-        const toggleBtn = document.getElementById('theme-toggle');
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        document.documentElement.setAttribute('data-theme', currentTheme);
-        toggleBtn.textContent = currentTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
-        
-        toggleBtn.addEventListener('click', () => {
-            let theme = document.documentElement.getAttribute('data-theme');
-            if (theme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
-                toggleBtn.textContent = 'Dark Mode';
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-                toggleBtn.textContent = 'Light Mode';
-            }
-        });
+<!-- Navigation, Closing, and Dark Mode Script Logic --> 
+<script> 
+// --- Dark Mode Logic --- 
+const toggleBtn = document.getElementById('theme-toggle'); 
+const currentTheme = localStorage.getItem('theme') || 'light'; 
+document.documentElement.setAttribute('data-theme', currentTheme); 
+toggleBtn.textContent = currentTheme === 'dark' ? 'Light Mode' : 'Dark Mode'; 
 
-        // --- Lightbox Viewer Logic ---
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxCaption = document.getElementById('lightbox-caption');
-        const closeBtn = document.getElementById('close-btn');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const images = Array.from(document.querySelectorAll('.collage-item img'));
-        let currentIndex = 0;
+toggleBtn.addEventListener('click', () => { 
+  let theme = document.documentElement.getAttribute('data-theme'); 
+  if (theme === 'dark') { 
+    document.documentElement.setAttribute('data-theme', 'light'); 
+    localStorage.setItem('theme', 'light'); 
+    toggleBtn.textContent = 'Dark Mode'; 
+  } else { 
+    document.documentElement.setAttribute('data-theme', 'dark'); 
+    localStorage.setItem('theme', 'dark'); 
+    toggleBtn.textContent = 'Light Mode'; 
+  } 
+}); 
 
-        function openLightbox(index) {
-            currentIndex = index;
-            lightboxImg.src = images[currentIndex].src;
-            lightboxImg.alt = images[currentIndex].alt;
-            lightboxCaption.textContent = images[currentIndex].alt;
-            lightbox.style.display = 'flex';
-        }
+// --- Lightbox Viewer Logic --- 
+const lightbox = document.getElementById('lightbox'); 
+const lightboxImg = document.getElementById('lightbox-img'); 
+const closeBtn = document.getElementById('close-btn'); 
+const prevBtn = document.getElementById('prev-btn'); 
+const nextBtn = document.getElementById('next-btn'); 
+const images = Array.from(document.querySelectorAll('.collage-item img')); 
+let currentIndex = 0; 
 
-        function closeLightbox() {
-            lightbox.style.display = 'none';
-            lightboxImg.src = '';
-            lightboxCaption.textContent = '';
-        }
+function openLightbox(index) { 
+  currentIndex = index; 
+  lightboxImg.src = images[currentIndex].src; 
+  lightboxImg.alt = images[currentIndex].alt; 
+  lightbox.style.display = 'flex'; 
+} 
 
-        function nextImage() {
-            currentIndex = (currentIndex + 1) % images.length;
-            lightboxImg.src = images[currentIndex].src;
-            lightboxImg.alt = images[currentIndex].alt;
-            lightboxCaption.textContent = images[currentIndex].alt;
-        }
+function closeLightbox() { 
+  lightbox.style.display = 'none'; 
+  lightboxImg.src = ''; 
+} 
 
-        function prevImage() {
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            lightboxImg.src = images[currentIndex].src;
-            lightboxImg.alt = images[currentIndex].alt;
-            lightboxCaption.textContent = images[currentIndex].alt;
-        }
+function nextImage() { 
+  currentIndex = (currentIndex + 1) % images.length; 
+  lightboxImg.src = images[currentIndex].src; 
+  lightboxImg.alt = images[currentIndex].alt; 
+} 
 
-        images.forEach((img, index) => {
-            img.addEventListener('click', () => openLightbox(index));
-        });
+function prevImage() { 
+  currentIndex = (currentIndex - 1 + images.length) % images.length; 
+  lightboxImg.src = images[currentIndex].src; 
+  lightboxImg.alt = images[currentIndex].alt; 
+} 
 
-        closeBtn.addEventListener('click', closeLightbox);
-        nextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextImage(); });
-        prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevImage(); });
+images.forEach((img, index) => { 
+  img.addEventListener('click', () => openLightbox(index)); 
+}); 
 
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        });
+closeBtn.addEventListener('click', closeLightbox); 
+nextBtn.addEventListener('click', (e) => { 
+  e.stopPropagation(); 
+  nextImage(); 
+}); 
+prevBtn.addEventListener('click', (e) => { 
+  e.stopPropagation(); 
+  prevImage(); 
+}); 
+lightbox.addEventListener('click', (e) => { 
+  if (e.target === lightbox) { 
+    closeLightbox(); 
+  } 
+}); 
 
-        document.addEventListener('keydown', (e) => {
-            if (lightbox.style.display === 'flex') {
-                if (e.key === 'ArrowRight') nextImage();
-                if (e.key === 'ArrowLeft') prevImage();
-                if (e.key === 'Escape') closeLightbox();
-            }
-        });
-    </script>
-    <!-- Back to Top Button -->
-<a href="#" class="back-to-top" id="scrollTopBtn" title="Go to top">↑</a>
-<script>
-  const scrollTopBtn = document.getElementById("scrollTopBtn");
+document.addEventListener('keydown', (e) => { 
+  if (lightbox.style.display === 'flex') { 
+    if (e.key === 'ArrowRight') nextImage(); 
+    if (e.key === 'ArrowLeft') prevImage(); 
+    if (e.key === 'Escape') closeLightbox(); 
+  } 
+}); 
+</script> 
 
-  window.onscroll = function() {
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-      scrollTopBtn.classList.add("show");
-    } else {
-      scrollTopBtn.classList.remove("show");
-    }
-  };
+<!-- Back to Top Button --> 
+<a href="#" class="back-to-top" id="scrollTopBtn" title="Go to top">↑</a> 
+<script> 
+const scrollTopBtn = document.getElementById("scrollTopBtn"); 
+window.onscroll = function() { 
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) { 
+    scrollTopBtn.classList.add("show"); 
+  } else { 
+    scrollTopBtn.classList.remove("show"); 
+  } 
+}; 
 </script>
+
 
 </body>
 </html>
